@@ -2,11 +2,13 @@ import java.util.*;
 
 public class Main {
     public static final Map<Integer, Integer> sizeToFreq = new HashMap<>();
-    public static synchronized void addToMap(int letter_R_Count) {
-        if (sizeToFreq.containsKey(letter_R_Count)) {
-            sizeToFreq.put(letter_R_Count, sizeToFreq.get(letter_R_Count) + 1);
-        } else {
-            sizeToFreq.put(letter_R_Count, 1);
+    public static void addToMap(int letter_R_Count) {
+        synchronized (sizeToFreq) {
+            if (sizeToFreq.containsKey(letter_R_Count)) {
+                sizeToFreq.put(letter_R_Count, sizeToFreq.get(letter_R_Count) + 1);
+            } else {
+                sizeToFreq.put(letter_R_Count, 1);
+            }
         }
     }
 
